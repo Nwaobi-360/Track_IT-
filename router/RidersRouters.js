@@ -1,30 +1,26 @@
-// const express = require('express');
-// // const mediaupload = require('../middleware/multer');
+const express = require('express');
+const mediaUpload = require('../middleware/multer')
 
-// const router = express.Router();
+const router = express.Router();
 
-// const { signUp, verify, logIn, forgotPassword, resetPasswordPage, resetPassword, signOut, } = require('../controller/RidersControllers');
+const { signUp, verify, logIn, getAll, getOne, updateParticipant, deleteParticipant, } = require('../controller/RidersControllers');
 // const {authenticate} = require('../middleware/authentation');
 
-// //endpoint to register a new user
-// router.post('/signup', signUp);
+//endpoint to register a new user
+router.post('/signUp', signUp);
 
-// //endpoint to verify a registered user
+//endpoint to verify a registered user
 // router.get('/verify/:id/:token', verify);
 
-// //endpoint to login a verified user
-// router.post('/login', logIn);
+//endpoint to login a verified user
+router.post('/login', logIn);
 
-// //endpoint for forget Password
-// router.post('/forgot', forgotPassword);
+router.get('/requestInfo', getAll);
 
-// //endpoint for reset Password Page
-// router.get('/reset/:userId', resetPasswordPage);
+router.get('/getone/:participantId', getOne);
 
-// //endpoint to reset user Password
-// router.post('/resetUser/:userId', resetPassword);
+router.put('/update/:participantId', updateParticipant);
 
-// //endpoint to sign out a user
-// router.post("/signout/:userId", signOut)
+router.delete('/delete/:participantId', deleteParticipant);
 
-// module.exports = router;
+module.exports = router;
