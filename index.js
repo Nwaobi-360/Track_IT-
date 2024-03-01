@@ -24,7 +24,7 @@ app.use('/api/v1/', RiderRouter)
 
 // Root endpoint
 app.get('/api/v1', (req, res) => {
-    res.send("Welcome to Track-IT");
+    res.send("Welcome to Track-IT"); 
 });
 
 // Start the server
