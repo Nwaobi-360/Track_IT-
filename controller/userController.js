@@ -91,7 +91,7 @@ if (error) {
                 CompanyName,
                 // CompanysAddress,
                 Email,
-            }, process.env.secret, { expiresIn: "60s" });
+            }, process.env.secret, { expiresIn: "5m" });
             user.token = token;
             const subject = 'Email Verification'
             //await jwt.verify(token, process.env.secret);
@@ -132,7 +132,7 @@ exports.verify = async (req, res) => {
 
             if (updatedUser.isVerified === true) {
                 return res.status(200).send(
-                    "<h3>You have been successfully verified. Kindly visit the login page.</h3><script>setTimeout(() => { window.location.href = '/api/v1/login'; }, 2000);</script>");
+                    "<h3>You have been successfully verified. Kindly visit the login page.</h3><script>setTimeout(() => { window.location.href = 'https://the-track-it.vercel.app/login'; }, 2000);</script>");
             }
         } else {
             jwt.verify(token, process.env.secret, async (error) => {
@@ -151,14 +151,14 @@ exports.verify = async (req, res) => {
                         html: generateDynamicEmail(updatedUser.CompanyName, link),
                         subject: "RE-VERIFY YOUR ACCOUNT"
                     });
-                    res.status(401).send("<h3>This link is expired. Kindly check your email for another email to verify.</h3><script>setTimeout(() => { window.location.href = '/api/v1/login'; }, 2000);</script>");
+                    res.status(401).send("<h3>This link is expired. Kindly check your email for another email to verify.</h3><script>setTimeout(() => { window.location.href = 'https://the-track-it.vercel.app/login'; }, 2000);</script>");
                     return;
                 }
             })
         }
     } catch (error) {
-        return res.status(500).json({
-            message: "Internal server error: " + error.message,
+        return res.status(500).json({ 
+            message: "Internal server error: " + error.message, 
         })
     }
 
@@ -176,7 +176,7 @@ exports.logIn = async (req, res) => {
             const checkEmail = await userModel.findOne({ Email: Email.toLowerCase() });
             if (!checkEmail) {
                 return res.status(404).json({
-                    message: 'User not registered'
+                    message: 'User not registered'      
                 });
             }
             const checkPassword = bcrypt.compareSync(password, checkEmail.password);
