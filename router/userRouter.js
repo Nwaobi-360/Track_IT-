@@ -1,30 +1,30 @@
-// const express = require('express');
-// // const mediaupload = require('../middleware/multer');
+const express = require('express');
+// const mediaupload = require('../middleware/multer');
 
-// const router = express.Router();
+const router = express.Router();
 
-// const { signUp, verify, logIn, forgotPassword, resetPasswordPage, resetPassword, signOut, } = require('../controller/userController');
-// const {authenticate} = require('../middleware/authentation');
+const { signUp, verify, logIn, forgotPassword, resetPasswordPage, resetPassword, signOut, } = require('../controller/userController');
+const {authenticate} = require('../middleware/authentation');
 
-// //endpoint to register a new user
-// router.post('/signup', signUp);
+//endpoint to register a new user
+router.post('/signup', signUp);
 
-// //endpoint to verify a registered user
-// router.get('/verify/:id/:token', verify);
+//endpoint to verify a registered user
+router.get('/verify/:id/:token', verify);
 
-// //endpoint to login a verified user
-// router.post('/login', logIn);
+//endpoint to login a verified user
+router.post('/login', logIn);
 
-// //endpoint for forget Password
-// router.post('/forgot', forgotPassword);
+//endpoint for forget Password
+router.post('/forgot', forgotPassword);
 
-// //endpoint for reset Password Page
-// router.get('/reset/:userId', resetPasswordPage);
+//endpoint for reset Password Page
+router.get('/reset/:userId', resetPasswordPage);
 
-// //endpoint to reset user Password
-// router.post('/resetUser/:userId', resetPassword);
+//endpoint to reset user Password
+router.post('/resetUser/:userId', resetPassword);
 
-// //endpoint to sign out a user
-// router.post("/signout/:userId", signOut)
+//endpoint to sign out a user
+router.post("/signout/:userId", signOut)
 
-// module.exports = router;
+module.exports = router;

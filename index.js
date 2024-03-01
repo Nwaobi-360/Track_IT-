@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const fileupload = require('express-fileupload');
-// const router = require('./router/userRouter');
+const router = require('./router/userRouter');
 const RiderRouter = require('./router/RidersRouters');
 
 
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileupload());
 
 // Routes
-// app.use('/api/v1', router, );
+app.use('/api/v1', router, );
 app.use('/api/v1/', RiderRouter)
 
 // Root endpoint
