@@ -7,7 +7,7 @@ const { signUp, verify, logIn, forgotPassword, resetPasswordPage, resetPassword,
 const {authenticate} = require('../middleware/authentation');
 
 //endpoint to register a new user
-router.post('/signup', signUp);
+router.post('/register', signUp);
 
 //endpoint to verify a registered user
 router.get('/verify/:id/:token', verify);

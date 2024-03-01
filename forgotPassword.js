@@ -1,4 +1,4 @@
-const resetFunc = (RiderFirstName, link) => {
+const resetFunc = ( link,name) => {
 
     return `
   
@@ -44,7 +44,7 @@ const resetFunc = (RiderFirstName, link) => {
                         <td>
                             <div style="padding: 0 2.5em; text-align: center;">
                                 <h2 style="font-family: 'Lato', sans-serif; color: rgba(0,0,0,.3); font-size: 40px; margin-bottom: 0; font-weight: 400;">Please reset your password</h2>
-                                <h3 style="font-family: 'Lato', sans-serif; font-size: 24px; font-weight: 300;"> Dear ${RiderFirstName},<br/>Click the button below to reset your password.</h3>
+                                <h3 style="font-family: 'Lato', sans-serif; font-size: 24px; font-weight: 300;"> Dear ${name},<br/>Click the button below to reset your password.</h3>
                                 <p><a href=${link} class="btn btn-primary" style="padding: 15px 35px; display: inline-block; border-radius: 3px; background: #7e2e00; color: #ffffff; text-decoration: none;">Reset</a></p>
                                 <h6 style="font-family: 'Lato', sans-serif; font-size: 18px; font-weight: 300;">This email expires in 5 minutes</h6>
                             </div>

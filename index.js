@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileupload());
 
 // Routes
-app.use('/api/v1', router, );
+app.use('/api/v1', router, );    
 app.use('/api/v1/', RiderRouter)
 
 // Root endpoint

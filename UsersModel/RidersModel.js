@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const RiderSchema = new mongoose.Schema({
-    RiderirstName: {
+    RiderFirstName: {
         type: String,
     },
     RiderLastName: {
@@ -21,14 +21,14 @@ const RiderSchema = new mongoose.Schema({
     RiderPassword: {
         type: String,
     },
-    profilePic: {
-    public_id: {
-        type: String,
-    },
-    url: {
-        type: String,
-    }
-},
+    // profilePic: {
+    // public_id: {
+    //     type: String,
+    // },
+    // url: { 
+    //     type: String,
+    // } 
+// },
     isVerified: {
         type: Boolean,
         default: false,

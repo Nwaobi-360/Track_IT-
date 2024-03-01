@@ -1,4 +1,4 @@
-const userModel = require('../UsersModel/UsersModel');
+const userModel = require('../UsersModel/companyModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { validateUser, validateUserLogin, } = require('../helpers/validator');
@@ -29,21 +29,21 @@ if (error) {
     });
 } else {
             const { CompanyName, CompanyAddress, Telephone, Email, password, } = req.body;
-            const emailExists = await userModel.findOne({ Email: Email.toLowerCase() });
-            console.log(Email)
+            const emailExists = await userModel.findOne({ Email: Email.toLowerCase(), CompanyName: CompanyName.toLowerCase() });
+            // console.log(emailExists)
             if (emailExists) {
                 return res.status(200).json({
-                    message: 'Email already exists',
+                    message: 'Email or CompanyName already exists',
                 })
             }
             // console.log(req.body)
-            const userNameExists = await userModel.findOne({ CompanyName: CompanyName.toLowerCase() });
-            console.log(CompanyName)
-            if (userNameExists) {
-                return res.status(403).json({
-                    message: 'Username taken',
-                })
-            }
+            // const userNameExists = await userModel.findOne({ CompanyName: CompanyName.toLowerCase() });
+            // console.log(userNameExists)
+            // if (userNameExists) {
+            //     return res.status(403).json({
+            //         message: 'Username taken',
+            //     })
+            // }
             const salt = bcrypt.genSaltSync(12)
             const hashpassword = bcrypt.hashSync(password, salt);
             // const profilePic = req.files.profilePic.tempFilePath;
@@ -74,7 +74,7 @@ if (error) {
             //         url: fileuploader.secure_url
             //     },
             });
-
+            const name= user.CompanyName
             if (!user) {
                 return res.status(404).json({
                     message: 'User not found',
@@ -96,13 +96,13 @@ if (error) {
             const subject = 'Email Verification'
             //await jwt.verify(token, process.env.secret);
             const link = `${req.protocol}://${req.get('host')}/api/v1/verify/${user.id}/${user.token}`
-            const html = generateDynamicEmail(fullName, link)
+            const html = generateDynamicEmail(link, name)
             sendEmail({
-                Email: user.Email,
+                email: user.Email,
                 html,
                 subject
             })
-
+            console.log(user.Email)
             await user.save()
             return res.status(200).json({
                 message: 'User profile created successfully',
@@ -123,10 +123,10 @@ exports.verify = async (req, res) => {
     try {
         const id = req.params.id;
         const token = req.params.token;
-        const user = await userModel.findById(id);
+        const user = await userModel.findById(id); 
         const jsonStuff = jwt.verify(token, process.env.secret);
-
-        if (jsonStuff) {
+ 
+        if (jsonStuff) { 
             // Update the user if verification is successful
             const updatedUser = await userModel.findByIdAndUpdate(id, { isVerified: true }, { new: true });
 

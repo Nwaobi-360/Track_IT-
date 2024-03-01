@@ -17,7 +17,7 @@ const capitalizeFirstLetter = (str) => {
 exports.signUp = async (req, res) => {
     try {
        
-        const { error } = validateRider(req.body);
+        const { error } = validateRider(req.body);  
         console.log(req.body)
 if (error) {  
     return res.status(500).json({
@@ -81,10 +81,11 @@ if (error) {
                 RiderEmail,
             }, process.env.secret, { expiresIn: "60s" });
             user.token = token;
+            const name= userNameExists.RiderFirstName.split("")[0]
             const subject = 'Email Verification'
             await jwt.verify(token, process.env.secret);
             const link = `${req.protocol}://${req.get('host')}/api/v1/verify/${user.id}/${user.token}`
-            const html = generateDynamicEmail(RiderFirstName, link)
+            const html = generateDynamicEmail(link, name)
             sendEmail({
                 RiderEmail: user.RiderEmail,
                 html,

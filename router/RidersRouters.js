@@ -7,7 +7,7 @@ const { signUp, verify, logIn, getAll, getOne, updateParticipant, deleteParticip
 // const {authenticate} = require('../middleware/authentation');
 
 //endpoint to register a new user
-router.post('/signUp', signUp);
+router.post('/create', signUp);
 
 //endpoint to verify a registered user
 // router.get('/verify/:id/:token', verify);
