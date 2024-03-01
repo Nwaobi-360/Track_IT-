@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
   },
 });
  
- const mailOption = await transporter.sendMail({
+ const mailOption = await transporter.sendEmail({
     from: process.env.user, // sender address
     to: options.email, // list of receivers
     subject: options.subject, // Subject line
@@ -22,7 +22,7 @@ const transporter = nodemailer.createTransport({
     html: options.html, // html body
   });
 
-    await transporter.sendMail(mailOption)
+    await transporter.sendEmail(mailOption)
          return {
             success: true,
             message: 'Email sent successfully',
@@ -35,7 +35,7 @@ const transporter = nodemailer.createTransport({
         };
       }
     }
-// module.exports = {sendEmail}
+module.exports = {sendEmail}
 // const nodemailer = require('nodemailer');
 // require('dotenv').config();
 
